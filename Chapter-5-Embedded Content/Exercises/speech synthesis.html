@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Speech Synthesis Board</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://i.imgur.com/U3gRz7w.png');
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .app {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #ff6ff0;
+    }
+
+    .input-area {
+      margin: 20px 0;
+    }
+
+    textarea {
+      width: 60%;
+      height: 80px;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+      resize: none;
+    }
+
+    #speakBtn {
+      padding: 10px 20px;
+      margin-left: 10px;
+      font-size: 1rem;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .phrase-btn {
+      padding: 20px;
+      font-size: 1.2rem;
+      background-color: white;
+      color: black;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .phrase-btn:hover {
+      transform: scale(1.05);
+      background-color: #ff6ff0;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+
+    <!--This is tittle of the speech synthesis-->
+    <h1> PSYCHEDELIC FISH</h1>
+    
+    <div class="input-area">
+      <textarea id="customText" placeholder="Type Here"></textarea>
+      <button id="speakBtn">Say it</button>
+    </div>
+
+    <!--This is sample bank 2 of speech synthesis-->
+
+    <h2></i>Sample Bank 2</i></h2>
+
+    <div class="grid">
+      <button class="phrase-btn">Ah-Ha</button>
+      <button class="phrase-btn">Back of the net</button>
+      <button class="phrase-btn">Bang out of order</button>
+      <button class="phrase-btn">Dan</button>
+      <button class="phrase-btn">Email of the evening </button>
+      <button class="phrase-btn">Hello Partridge</button>
+      <button class="phrase-btn">Iateascotchegg</button>
+      <button class="phrase-btn">imconfused</button>
+      
+    </div>
+  </div>
+
+  <script>
+    // Speak any given text
+    function speakText(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utterance);
+    }
+
+    // Speak input from textarea
+    function speakInput() {
+      const input = document.getElementById('customText').value;
+      if (input.trim() !== "") {
+        speakText(input);
+      }
+    }
+
+    // Handle "Say it" button click
+    document.getElementById('speakBtn').addEventListener('click', speakInput);
+
+    // Add event listeners to phrase buttons
+    const phraseButtons = document.querySelectorAll('.phrase-btn');
+    phraseButtons.forEach(btn => {
+      btn.addEventListener('click', () => speakText(btn.innerText));
+    });
+  </script>
+</body>
+</html>
